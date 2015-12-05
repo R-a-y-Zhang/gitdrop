@@ -1,6 +1,8 @@
 # gitdrop
 [] - required
-    () - optional
+
+() - optional
+
     config [option] [value] - configures gitdrop
         --key : configures user access key. This is required in order for gitdrop
             to access dropbox files
