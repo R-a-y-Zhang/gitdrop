@@ -10,5 +10,5 @@ client = dropbox.client.DropboxClient(access_key)
 upload = os.listdir(os.path.dirname(os.path.abspath(__file__)))
 for file in upload:
     f = open(file)
-    rep = client.put_file(j)
+    rep = client.put_file(f)
     f.close()
