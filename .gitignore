@@ -1,2 +1,3 @@
 user_options.config
 *.pyc
+.DS_Store
