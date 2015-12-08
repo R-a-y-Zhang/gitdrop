@@ -30,7 +30,7 @@ def push(cmds):
 
     for file in upload:
         f = open(os.path.join(ld_folder, file),"rb")
-        rep = client.put_file(dst + f.name, f)
+        rep = client.put_file(dst + file, f)
         print (rep)
         #os.remove(file)
         f.close()
