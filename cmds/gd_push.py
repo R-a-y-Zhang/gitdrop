@@ -30,4 +30,5 @@ def push(cmds):
         f = open(os.path.join(ld_folder, file))
         rep = client.put_file(dst + file, f, overwrite=True)
         print(rep['path'])
+        os.remove(file)
         f.close()
