@@ -88,10 +88,10 @@ def load(args):
         src = abs_path
         dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loaded')
         shutil.copy(src, dst)
+        ltm = datetime.datetime.fromtimestamp(os.stat(abs_path).st_mtime)
+        formatted_time = "{}-{}-{} {}:{}:{}".format(ltm.day, ltm.month, \
+            ltm.year, ltm.hour, ltm.minute, ltm.second)
         if src not in files_tracked:
-            ltm = datetime.datetime.fromtimestamp(os.stat(abs_path).st_mtime)
-            formatted_time = "{}-{}-{} {}:{}:{}".format(ltm.day, ltm.month, \
-                ltm.year, ltm.hour, ltm.minute, ltm.second)
             status.append("{}: {}".format(src, formatted_time))
         if src in files_tracked:
             status[files_tracked.index(src)] = "{}: {}".format(src, formatted_time)
