@@ -5,6 +5,8 @@ def push(cmds):
     if access_key == None:
         print("User access key was not found, make sure it is properly configured")
         sys.exit(0)
+    if os.path.exists('tracked_files.txt') == False:
+        open('.tracked_files.txt', 'w').close()
     client = dropbox.client.DropboxClient(access_key)
     #basic outline
     #iterate thrrough the loaded doirectory
@@ -27,8 +29,8 @@ def push(cmds):
         dst = cmds[0]
 
     for file in upload:
-        f = open(os.path.join(ld_folder, file))
-        rep = client.put_file(dst + file, f, overwrite=True)
-        print(rep['path'])
-        os.remove(file)
+        f = open(os.path.join(ld_folder, file),"rb")
+        rep = client.put_file(dst + f.name, f)
+        print (rep)
+        #os.remove(file)
         f.close()
