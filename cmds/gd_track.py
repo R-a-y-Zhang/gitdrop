@@ -4,6 +4,8 @@ def track(args):
     untrack = False
     if args[0] == '--u':
         untrack = True
+    if os.path.isfile('tracked_files.txt')==False:
+        tracker_file = open('tracked_files.txt', 'a')
     tracker_file = open('tracked_files.txt', 'r')
     status = tracker_file.readlines()
     tracker_file.close()
@@ -68,7 +70,7 @@ def status(args):
 
 
 def load(args):
-    tracker_file = open('tracked_file.txt', 'r')
+    tracker_file = open('tracked_files.txt', 'r')
 
 
 
@@ -117,7 +119,7 @@ def check_in_dir(f):
 
 def write_to_tracked(status):
     if len(status) != 0:
-        output = open('tracked_file.txt', 'w')
+        output = open('tracked_files.txt', 'w')
         for s in status:
             print (s)
             output.write(s + '\n')

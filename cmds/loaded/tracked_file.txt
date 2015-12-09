@@ -1,3 +1,0 @@
-/Users/hari/Documents/programming/pythonshit/testtrack.txt: 8-12-2015 18:52:37
-/Users/hari/Documents/programming/pythonshit/tracked_file.txt: 8-12-2015 19:59:41
-/Users/hari/Documents/programming/pythonshit/tracked_files.txt: 8-12-2015 19:59:22

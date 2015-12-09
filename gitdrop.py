@@ -1,5 +1,5 @@
 from cmds import gd_config, gd_list, gd_move, gd_copy, gd_mkdir, gd_track, \
-                    gd_push, gd_fetch, gd_share, gd_delete
+                    gd_push, gd_fetch, gd_share, gd_delete, gd_pull
 import sys
 
 if (len(sys.argv) == 1):
@@ -40,6 +40,8 @@ elif direct == 'share':
 
 elif direct == 'del' or direct == 'delete':
     gd_delete.delete(sys.argv[2:])
+elif direct=="pull":
+    gd_pull.pull(sys.argv[2:])
 
 elif direct == 'help':
     print("""
