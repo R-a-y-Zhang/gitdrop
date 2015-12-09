@@ -30,10 +30,7 @@ def track(args):
     if len(status) != 0:
         tracker_file.write(abs_path)
     tracker_file = open('tracked_files.txt', 'w')
-    for s in status:
-        tracker_file.write("%s\n" % (s))
-
-    tracker_file.close()
+    write_to_tracked(status)
 
 def status(args):
     if args[0] == '--loaded':
@@ -66,10 +63,7 @@ def status(args):
                 if ltm == modtimes[files_tracked.index(abs_path)]:
                     print("File %s: Changed since last loaded" % (abs_path))
         output = open('tracked_files.txt', 'w')
-        for s in status:
-            output.write('%s\n', (s))
-
-        output.close()
+        write_to_tracked(status)
 
 def load(args):
     tracker_file = open('tracked_files.txt', 'r')
@@ -101,3 +95,11 @@ def check_in_dir(f):
     if os.path.exists(os.path.join(os.get(cwd(), f))) == True:
         return os.path.join(os.getcwd(), f)
     return f
+
+def write_to_tracked(status):
+    if len(status) != 0:
+        output = open('tracked_file.txt', 'w')
+        for s in status:
+            output.write(s)
+
+        output.close()
