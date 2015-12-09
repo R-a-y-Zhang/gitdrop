@@ -65,17 +65,29 @@ def status(args):
 
         output = open('tracked_files.txt', 'w')
         write_to_tracked(status)
-        print ("I JUST diD druGS")
+
 
 def load(args):
-    tracker_file = open('tracked_files.txt', 'r')
+    tracker_file = open('tracked_file.txt', 'r')
+
+
+
     status = tracker_file.readlines()
+
+
+
     tracker_file.close()
     files_tracked, modifications = [line.split(": ")[0] for line in status], \
                                     [line.split(": ")[1] for line in status]
     if os.path.isdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loaded')) == False:
         os.mkdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loaded'))
+    print (files_tracked)
+    if len (args)==0:
 
+        for f in files_tracked:
+            src = check_in_dir(f)
+            dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loaded')
+            shutil.copy(src,dst)
     for f in args:
         abs_path = check_in_dir(f)
         if os.path.exists(abs_path) == False:
@@ -84,6 +96,8 @@ def load(args):
 
         src = abs_path
         dst = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'loaded')
+        print (src)
+        print (dst)
         shutil.copy(src, dst)
         ltm = datetime.datetime.fromtimestamp(os.stat(abs_path).st_mtime)
         formatted_time = "{}-{}-{} {}:{}:{}".format(ltm.day, ltm.month, \
@@ -92,6 +106,9 @@ def load(args):
             status.append("{}: {}".format(src, formatted_time))
         if src in files_tracked:
             status[files_tracked.index(src)] = "{}: {}".format(src, formatted_time)
+
+
+
 
 def check_in_dir(f):
     if os.path.exists(os.path.join(os.getcwd(), f)) == True:
@@ -103,6 +120,6 @@ def write_to_tracked(status):
         output = open('tracked_file.txt', 'w')
         for s in status:
             print (s)
-            output.write(s)
+            output.write(s + '\n')
 
         output.close()
