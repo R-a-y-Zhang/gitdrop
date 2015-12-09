@@ -9,8 +9,9 @@ def track(args):
     tracker_file.close()
     files_tracked, modifications = [line.split(": ")[0] for line in status], \
                                     [line.split(": ")[1] for line in status]
-
-    fs_list = args[1:]
+    print (args[0:])
+    fs_list = args[0:]
+    print (fs_list)
     for f in fs_list:
         abs_path = check_in_dir(f)
 
@@ -27,8 +28,7 @@ def track(args):
         if abs_path in files_tracked: # if is tracked, update time
             target = "{}: {}".format(abs_path, time_str)
             status[files_tracked.index(abs_path)] = target
-    if len(status) != 0:
-        tracker_file.write(abs_path)
+
     tracker_file = open('tracked_files.txt', 'w')
     write_to_tracked(status)
 
@@ -62,8 +62,10 @@ def status(args):
 
                 if ltm == modtimes[files_tracked.index(abs_path)]:
                     print("File %s: Changed since last loaded" % (abs_path))
+
         output = open('tracked_files.txt', 'w')
         write_to_tracked(status)
+        print ("I JUST diD druGS")
 
 def load(args):
     tracker_file = open('tracked_files.txt', 'r')
@@ -92,7 +94,7 @@ def load(args):
             status[files_tracked.index(src)] = "{}: {}".format(src, formatted_time)
 
 def check_in_dir(f):
-    if os.path.exists(os.path.join(os.get(cwd(), f))) == True:
+    if os.path.exists(os.path.join(os.getcwd(), f)) == True:
         return os.path.join(os.getcwd(), f)
     return f
 
@@ -100,6 +102,7 @@ def write_to_tracked(status):
     if len(status) != 0:
         output = open('tracked_file.txt', 'w')
         for s in status:
+            print (s)
             output.write(s)
 
         output.close()
