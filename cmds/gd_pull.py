@@ -23,7 +23,6 @@ def pull(args):
             output_file = y[len(y)-1]
             print (download_file)
             with client.get_file(download_file) as fi:
-                j = open(output_file,"a")
                 j = open(output_file,"wb")
                 j.write(fi.read())
                 j.close()
