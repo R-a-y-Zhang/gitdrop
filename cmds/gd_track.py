@@ -27,7 +27,8 @@ def track(args):
         if abs_path in files_tracked: # if is tracked, update time
             target = "{}: {}".format(abs_path, time_str)
             status[files_tracked.index(abs_path)] = target
-
+    if len(status) != 0:
+        tracker_file.write(abs_path)
     tracker_file = open('tracked_files.txt', 'w')
     for s in status:
         tracker_file.write("%s\n" % (s))
