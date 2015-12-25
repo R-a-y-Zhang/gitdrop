@@ -4,7 +4,7 @@ import hashlib
 import sys
 import os
 import shutil
-import glob
+
 #
 listOfFiles = []
 def main(args):
@@ -37,20 +37,12 @@ def decrypt_f(args,password):
 def help():
     print("Usage encrypt('key',filename)")
     print("if its a directory u can encrypt all all files within those direcories with -r arg, or s specfic directory with -r [directories]")
-
 def recursiveHelper(args):
-
     if os.path.isdir(args[0]):
         for root,dirs,files in os.walk(args[0]):
             for file in files:
                 filepath = os.path.join(root,file)
                 listOfFiles.append(filepath)
         print(listOfFiles)
-
-
         return listOfFiles
-
-
-
-
 recursiveHelper("../cmds")
