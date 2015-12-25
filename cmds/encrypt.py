@@ -3,19 +3,21 @@ import simplecrypt
 import hashlib
 import sys
 import os
+import shutil
+import glob
 #
-pass = ""
+listOfFiles = []
+def main(args):
+
+
+
 def encrypt_f(args):
-
     password = args[0]
-
     rey = hashlib.sha256(password).digest()
     for i in range (10000):
-
         rey = hashlib.sha256(rey).hexdigest()
     with open(args[1], 'rb') as fo:
         plaintext = fo.read()
-
     enc = encrypt(rey, plaintext)
     with open(args[1], 'wb') as fo:
         fo.write(enc)
@@ -30,25 +32,25 @@ def decrypt_f(args):
     x = open(args[1],'wb')
     x.write(l)
 #encrypt_f(sys.argv[1:])
-decrypt_f(sys.argv[1:])
-
-
-
-
-def getPass():
-    if pass == "":
-        print("Please Set A password")
-    else:
-        return pass
+#decrypt_f(sys.argv[1:])
 
 def help():
     print("Usage encrypt('key',filename)")
     print("if its a directory u can encrypt all all files within those direcories with -r arg, or s specfic directory with -r [directories]")
 
 def recursiveHelper(args):
-    if os.isdir(args[0]):
-        for file os.walk(args[0]):
-            if os.isdir(file):
-                return os.walk(file) + recursiveHelper(file)
-            else:
-                return file
+
+    if os.path.isdir(args[0]):
+        for root,dirs,files in os.walk(args[0]):
+            for file in files:
+                filepath = os.path.join(root,file)
+                listOfFiles.append(filepath)
+        print(listOfFiles)
+
+
+        return listOfFiles
+
+
+
+
+recursiveHelper("../cmds")
