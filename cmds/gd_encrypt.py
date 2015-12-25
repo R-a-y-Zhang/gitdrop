@@ -1,5 +1,6 @@
 import os, random, struct
 from Crypto.Cipher import AES
+from hashlib import sha256 as sha256
 
 def encrypt_file(key, input_, output_=None, chunksize=64*2048):
 	if not output_:
@@ -40,3 +41,12 @@ def decrypt_file(key, input_, output_=None, chunksize=64*2048):
 				out_f.write(decrypt.decrypt(chunk))
 
 			out_f.truncate(orig_size)
+
+def enc_pass(pswd, sha=None, cnt=1000):
+	if cnt == 0:
+		return pswd
+	if not sha:
+		sha = sha256()
+	pswd = pswd.encode('utf-8')
+	pswd = sha.update(pswd).hexdigest()
+	return enc_pass(pswd, sha, cnt - 1)
