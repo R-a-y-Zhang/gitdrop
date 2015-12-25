@@ -11,25 +11,25 @@ def main(args):
 
 
 
-def encrypt_f(args):
-    password = args[0]
+def encrypt_f(args,password):
+    password = password
     rey = hashlib.sha256(password).digest()
     for i in range (10000):
         rey = hashlib.sha256(rey).hexdigest()
-    with open(args[1], 'rb') as fo:
+    with open(args[0], 'rb') as fo:
         plaintext = fo.read()
     enc = encrypt(rey, plaintext)
-    with open(args[1], 'wb') as fo:
+    with open(args[0], 'wb') as fo:
         fo.write(enc)
         fo.close()
-def decrypt_f(args):
-    password = args[0]
-    cyper = open(args[1],'rb').read()
+def decrypt_f(args,password):
+    password =  password
+    cyper = open(args[0],'rb').read()
     rey = hashlib.sha256(password).digest()
     for i in range (10000):
         rey = hashlib.sha256(rey).hexdigest()
     l = simplecrypt.decrypt(rey,cyper)
-    x = open(args[1],'wb')
+    x = open(args[0],'wb')
     x.write(l)
 #encrypt_f(sys.argv[1:])
 #decrypt_f(sys.argv[1:])
