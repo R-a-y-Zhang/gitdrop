@@ -17,6 +17,6 @@ INCOMPLETE
 	+ encrypt (encrypts before uploading)
 	+ mkdir (creates new directory)
 	+ move (moves file/folder to location)
-	+ track (tracks local changes, with option to track online changes)
-	+ status (under track)
+	+ track (tracks local changes, with option to track online changes) (Untested)
+	+ status (under track) (Untested)
 	+ share (creates shareable link)
