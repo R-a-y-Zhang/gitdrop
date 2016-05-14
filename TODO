@@ -1,0 +1,22 @@
+TODOS
+-------------------------------------------------------------
++ Create documentation
++ Create tests
++ Create bash scripts
+
+CMDS
+-------------------------------------------------------------
+FINISHED
+	+ config
+	+ fetch
+	+ list
+	+ push
+INCOMPLETE
+	+ copy (creates copy of file/folder)
+	+ delete (deletes file/folder)
+	+ encrypt (encrypts before uploading)
+	+ mkdir (creates new directory)
+	+ move (moves file/folder to location)
+	+ track (tracks local changes, with option to track online changes)
+	+ status (under track)
+	+ share (creates shareable link)
